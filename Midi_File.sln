@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Midi_File", "Midi_File\Midi_File.vbproj", "{6F97E0CE-01D2-42F1-813E-0D62FD0341FA}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Test Midi_File", "Test Midi_File\Test Midi_File.vbproj", "{8731BBDA-5FF8-434F-97F4-F8E31B47D8F4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6F97E0CE-01D2-42F1-813E-0D62FD0341FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F97E0CE-01D2-42F1-813E-0D62FD0341FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F97E0CE-01D2-42F1-813E-0D62FD0341FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F97E0CE-01D2-42F1-813E-0D62FD0341FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8731BBDA-5FF8-434F-97F4-F8E31B47D8F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8731BBDA-5FF8-434F-97F4-F8E31B47D8F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8731BBDA-5FF8-434F-97F4-F8E31B47D8F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8731BBDA-5FF8-434F-97F4-F8E31B47D8F4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {615B7DB1-684F-4017-B47D-169B9A2FB3BF}
+	EndGlobalSection
+EndGlobal
