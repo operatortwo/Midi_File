@@ -1,0 +1,99 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Midi_Keyboard
+</name>
+</assembly>
+<members>
+<member name="T:Midi_Keyboard.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:Midi_Keyboard.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:Midi_Keyboard.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="M:Midi_Keyboard.Keyboard.pos_to_note(System.Int32,System.Int32,System.Int32@,System.Int32@)">
+ <summary>
+ Mouse position x/y to ret_NoteNr and ret_Velocity.
+ Returns FALSE if invalid position.
+ </summary>
+ <param name="pos_x"></param>
+ <param name="pos_y"></param>
+ <param name="ret_NoteNr"></param>
+ <returns></returns>
+</member>
+<member name="M:Midi_Keyboard.Keyboard.noteNum_to_NoteName(System.Int32)">
+ <summary>
+ Note-number to Note Name (f.e. 60 to 'C 4')
+ </summary>
+ <param name="noteNr"></param>
+ <returns></returns>
+</member>
+<member name="M:Midi_Keyboard.Main.#ctor">
+ <summary>
+ Create keyboard, using default size. Method Show() to display the Keyboard on the screen.
+ </summary>
+</member>
+<member name="M:Midi_Keyboard.Main.#ctor(System.Int32,System.Int32,System.Single)">
+ <summary>
+ Create keyboard and set the desired size. Method Show() to display the Keyboard on the screen.
+ </summary>
+ <param name="num_of_keys"></param>
+ <param name="num_of_first_key"></param>
+ <param name="key_size_multiplier"></param>
+</member>
+<member name="M:Midi_Keyboard.Main.show">
+ <summary>
+ Shows the keyboard on the screen.
+ </summary>
+</member>
+<member name="M:Midi_Keyboard.Main.show(System.String)">
+ <summary>
+ Shows the keyboard on the screen and sets the window title.
+ </summary>
+ <param name="Title"></param>
+</member>
+<member name="M:Midi_Keyboard.Main.get_keyboard_parameters(System.Int32@,System.Int32@,System.Single@)">
+ <summary>
+ Returns the current settings for the keyboard size. (for saving to .ini, ...)
+ </summary>
+ <param name="num_of_keys"></param>
+ <param name="num_of_first_key"></param>
+ <param name="key_size_multiplier"></param>
+</member>
+<member name="M:Midi_Keyboard.Main.close">
+ <summary>
+ Closes the Keyboard-Form
+ </summary>
+</member>
+<member name="M:Midi_Keyboard.Main.Midi_In(System.Int32)">
+ <summary>
+ Visualize incoming Midi-Data on the Keyboard. 1 DWORD short Midi-Message.
+ </summary>
+ <param name="dwParam1">vv nn ss (hex) where vv is velocity, nn is note number, ss is status</param>
+</member>
+<member name="M:Midi_Keyboard.Main.Midi_In(System.Byte,System.Byte,System.Byte)">
+ <summary>
+ Visualize incoming Midi-Data on the Keyboard. short Midi-Message with separated bytes.
+ </summary>
+ <param name="status">status, channel will be ignored</param>
+ <param name="data1">Note number</param>
+ <param name="data2">Velocity</param>
+</member>
+<member name="M:Midi_Keyboard.Main.Set_All_Notes_OFF">
+ <summary>
+ Visualizer: Set all notes to OFF-state.
+ </summary>
+</member>
+</members>
+</doc>
