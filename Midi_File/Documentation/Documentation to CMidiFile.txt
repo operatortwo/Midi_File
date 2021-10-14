@@ -1,0 +1,86 @@
+﻿Documentation of CMidiFile
+--------------------------
+
+Methods:
+--------
+
+ReadMidiFile(fullname As String) As Boolean
+	Returns TRUE if successfully loaded
+		Property FileLoaded is set to TRUE
+		TrackList As New List(Of TrackChunk)
+			EventList As New List(Of TrackEvent)
+
+Returns FALSE if an error occurred
+ErrorText contains a short description of the error
+ErrorCode contains the type of the error
+
+
+StartPlayer()
+StopPlayer()
+PlayerPause()
+PlayerContinue()
+PlayerPause_toggle()
+
+PlayerMoveTo(NewPosition As Double)         ' song ticks
+                
+
+Events:
+-------
+
+Public Event PlayerStarted()
+Public Event PlayerStopped()
+
+Public Event OutShortMsg(Track As Integer, Status As Byte, Data1 As Byte, Data2 As Byte)
+' for the Output of Noten(on und off), Controllerevents, ...
+	' OutShortMsg(..., Status, Data1, Data2)
+    	' Track = MidiTrackNr for filtering by Track)   
+        
+note:Track not Channel. This parameter is currently not used in the Test application
+
+
+Hires-Timer
+===========
+Often the expression 'High resolution timer' is used in public, but maybe a more appropriate decription would be 'High frequency timer'
+
+
+Hires-Timer (previous version):
+--------------------------
+TimerQueueTimer was used, seemed to work.
+Update: CreateTimerQueueTimer can normally not reach an interval below 15 milliseconds. 
+Lower values could only be achieved in conjunction with some USB-Midi manufacturer drivers.
+So it seems that timeSetEvent is the only reliable way to get a Timer interval down to 1 millisecond.
+
+
+Hires-Timer (current version):
+--------------------------
+
+Declare Auto Function timeBeginPeriod Lib "winmm.dll" (uPeriod As UInteger) As UInteger
+    Declare Auto Function timeEndPeriod Lib "winmm.dll" (uPeriod As UInteger) As UInteger
+
+    Declare Auto Function timeSetEvent Lib "winmm.dll" (uDelay As UInteger, uResolution As UInteger, lpTimeProc As TimeProc, dwUser As IntPtr, fuEvent As UInteger) As UInteger
+    Declare Auto Function timeKillEvent Lib "winmm.dll" (uTimerID As UInteger) As UInteger
+
+    Public Const TIME_PERIODIC = 1
+
+    Delegate Sub TimeProc(uID As UInteger, uMsg As UInteger, dwUser As UInteger, dw1 As UInteger, dw2 As UInteger)
+    Public fptrTimeProc As New TimeProc(AddressOf TickCallback)
+
+    Private tInterval As UInteger = 2                     ' 2 = 2 ms
+    Private tResolution As UInteger = 2                   ' 2  (0 = most accurate)
+
+    Private TimerID As UInteger
+
+Public Sub TickCallback(uID As UInteger, uMsg As UInteger, dwUser As UInteger, dw1 As UInteger, dw2 As UInteger)
+      	' ...
+' ...
+    End Sub
+Private Sub StartPlayerTick()
+        timeBeginPeriod(tResolution)
+        TimerID = timeSetEvent(tInterval, tResolution, fptrTimeProc, IntPtr.Zero, TIME_PERIODIC)
+        ' timeSetEvent is marked as obsolete in the documantation --> CreateTimerQueueTimer
+End Sub
+
+Private Sub StopPlayerTick()
+        timeKillEvent(TimerID)
+        timeEndPeriod(tResolution)
+End Sub

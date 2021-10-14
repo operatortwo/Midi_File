@@ -1,0 +1,85 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Midi_IO
+</name>
+</assembly>
+<members>
+<member name="T:Midi_IO.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:Midi_IO.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:Midi_IO.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="E:Midi_IO.Midi_IO.MidiInCallbackMsg">
+ <summary>
+ messages about the state of a Midi-In Port
+ </summary>    
+</member>
+<member name="E:Midi_IO.Midi_IO.MidiOutCallbackMsg">
+ <summary>
+ messages about the state of a Midi-Out Port
+ </summary>    
+</member>
+<member name="E:Midi_IO.Midi_IO.MidiInData">
+ <summary>
+ Handles the MIM_DATA message.
+ </summary>    
+</member>
+<member name="E:Midi_IO.Midi_IO.MidiInLongdata">
+ <summary>
+ Handles the MIM_LONGDATA message in a modified manner. 
+ lpMidiHdr in dwParam1 is copied to a managed buffer as byte()
+ </summary>  
+</member>
+<member name="P:Midi_IO.Midi_IO.IsRunning">
+ <summary>
+ Midi_IO_System state
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Midi_IO.Midi_IO.MidiIn_filter_TimingClock">
+ <summary>
+ Set to FALSE to receive TimingClock
+ </summary>
+ <returns></returns>
+</member>
+<member name="P:Midi_IO.Midi_IO.MidiIn_filter_ActiveSense">
+ <summary>
+ Set to FALSE to receive ActiveSense
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Midi_IO.Midi_IO._Start">
+ <summary>
+  start the Midi_IO system
+   Returns FALSE if already started
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Midi_IO.Midi_IO._End">
+ <summary>
+ stop the Midi_IO system.
+  Returns FALSE if already stopped
+ </summary>    
+</member>
+<member name="M:Midi_IO.Midi_IO.RefreshPortList">
+ <summary>
+ Closes all In- and Output Ports.
+ Updates the list of In- and Output Ports.
+ Useful if a device was connected or disconnected
+ </summary>
+</member>
+</members>
+</doc>

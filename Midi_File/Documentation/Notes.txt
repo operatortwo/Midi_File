@@ -1,0 +1,50 @@
+﻿--- To Do ---
+
+
+---
+
+CMidiFile
+	TrackList
+		TrackChunk
+			EventList
+				Type
+				Time
+				Status
+				Data1
+				Data2
+				DataX
+
+
+
+Note-On	9n	Velocity  > 0
+
+Note-On  9n	Velocity = 0		same note-Num and channel
+Note-Off 8n						same Note-Num and channel
+
+----
+
+Voice Map
+	
+	program change
+ch.	val.		Bank MSB	Bank LSB
+
+0	0-127		0-127		0-127
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12	80h		80h		80h
+13	80h		80h		80h
+14	80h		80h		80h
+16	80h		80h		80h
+
+16*3 bytes = 48 bytes (no need for channel =index)
+all Values are 7-Bit
+init = set all to 80h (=value not set)
