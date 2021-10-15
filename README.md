@@ -1,5 +1,5 @@
 # Midi_File
-This is a Midi-File player...
+This is a simple midi file player, written to learn more about the file structure and the playback requirements.
 
 ---
 
