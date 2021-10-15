@@ -8,7 +8,8 @@ ss main
 
 ss keyboard
 
-![Midi_File_Keyboard](https://user-images.githubusercontent.com/88147904/137456983-f07dd6e1-405b-441b-a659-68c33b63fcfa.PNG)
+![Midi_File_Keyboard](https://user-images.githubusercontent.com/88147904/137457844-6094b904-f9f8-44d1-b991-126acfe62260.PNG)
+
 
 
 ss eventlist
