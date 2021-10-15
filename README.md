@@ -1,7 +1,11 @@
 # Midi_File
+
+
 This is a simple midi file player, written to learn more about the file structure and the playback requirements.
 
-Privacy note: For convenience LastMidiFile and LastMidiOutput are stored in the App Data folder through MySettings.
+
+> Privacy note: For convenience LastMidiFile and LastMidiOutput are stored in the App Data folder through MySettings.
+
 ---
 
 ### The Main view
@@ -39,7 +43,7 @@ The ReadMidiFile function of Midi_File does:
 - convert Delta-Times to absolute time (in player ticks)
 
 After StartPlayer() the player runs through the lists oft TrackEvents and raises OutShortMsg events.
-It is then up to the main application to send the Midi-messages to the output port.
+It's then up to the main application to send the Midi-messages to the Midi output port.
 
 
 
