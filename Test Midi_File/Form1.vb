@@ -11,7 +11,7 @@ Public Class Form1
     Public WithEvents Mkbd As New Midi_Keyboard.Main()                                  'screen Keyboard
 
     'Public Midi_Path As String = GetFolderPath(SpecialFolder.MyMusic) & "\Midi"
-    'Public Midi_Path As String = GetFolderPath(SpecialFolder.Windows) & "\Media"          
+    'Public Midi_Path As String = GetFolderPath(SpecialFolder.Windows) & "\Media"              
     Public Midi_Path As String = Application.StartupPath
 
     Public MidiFullname As String = ""

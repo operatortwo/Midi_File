@@ -1,10 +1,5 @@
 ﻿--- To Do ---
 
-- TabPage for showing Events in FIFO
-- another FIFO for Display-Action (dequeuing)
-+ My.Settings: lastMidiFile
-+ Flag: save to for Queue
-+ M:B:T Position
 
 ---
 
@@ -23,8 +18,8 @@ CMidiFile
 
 Note-On	9n	Velocity  > 0
 
-Note-On  9n	Velocity = 0		same note-Nr and channel
-Note-Off 8n				same Note-Nr and channel
+Note-On  9n	Velocity = 0		same note-Num and channel
+Note-Off 8n						same Note-Num and channel
 
 ----
 
@@ -50,6 +45,6 @@ ch.	val.		Bank MSB	Bank LSB
 14	80h		80h		80h
 16	80h		80h		80h
 
-16*3 bytes = 48 bytes (channel muss nicht angegeben werden  =index)
-alle Werte sind 7-Bit
+16*3 bytes = 48 bytes (no need for channel =index)
+all Values are 7-Bit
 init = set all to 80h (=value not set)

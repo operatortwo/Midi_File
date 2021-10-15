@@ -1,6 +1,7 @@
 # Midi_File
 This is a simple midi file player, written to learn more about the file structure and the playback requirements.
 
+Privacy note: For convenience LastMidiFile and LastMidiOutput are stored in the App Data folder through MySettings.
 ---
 
 ### The Main view
@@ -23,5 +24,22 @@ This is only a view, no editing is available
 ### Tracks can be muted
 ![Midi_File_Mute](https://user-images.githubusercontent.com/88147904/137457033-db12035c-6942-4fc9-b65a-dafc4bd8f2ac.PNG)
 In this example, only bass and drums are played
+
+---
+
+## Programming details
+
+The Midi-File library contains all the parts for the file -reader and -player.
+The Test Midi_File application contains a reference to Midi_File and defines the User Interface.
+
+The ReadMidiFile function of Midi_File does:
+- loading the file
+- do some checks
+- convert the file to the internal structure
+- convert Delta-Times to absolute time (in player ticks)
+
+After StartPlayer() the player runs through the lists oft TrackEvents and raises OutShortMsg events.
+It is then up to the main application to send the Midi-messages to the output port.
+
 
 

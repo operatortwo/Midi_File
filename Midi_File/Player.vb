@@ -69,7 +69,7 @@
 
                     If ev.Type = EventType.MidiEvent Then
 
-                        ' Falls Track Mute = True und NoteOn event skip output
+                        ' If Track Mute = True und NoteOn event skip output
 
                         If TrackList(i - 1).Mute = False Then
                             RaiseEvent OutShortMsg(i - 1, ev.Status, ev.Data1, ev.Data2)
