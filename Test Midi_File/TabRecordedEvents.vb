@@ -108,8 +108,8 @@
         Const DstTPQ = 960
 
         pat.Name = PatternName
-        pat.Kategorie = ""
-        pat.Gruppe = ""
+        pat.Category = ""
+        pat.Group = ""
         pat.Source = "Midi_File"
         pat.BPM = CInt(Mid.BPM)
         pat.TPQ = DstTPQ                    ' the event times in Mid.TPQ are converted to DstTPQ below      

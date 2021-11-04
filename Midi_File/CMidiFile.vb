@@ -108,8 +108,8 @@ Public Class CMidiFile
     ''' </summary>
     <Serializable> Public Class CPattern
         Public Name As String                       ' Pattern name
-        Public Kategorie As String                  ' 
-        Public Gruppe As String                     '
+        Public Category As String                  ' 
+        Public Group As String                     '
         Public Source As String                     ' f.e. the device name, MIDI, ...
         Public BPM As Integer                       ' BeatsPerMinute (Tempo)
         Public TPQ As Integer                       ' TicksPerQuarterNote (=960)
