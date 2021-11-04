@@ -108,8 +108,8 @@ Public Class CMidiFile
     ''' </summary>
     <Serializable> Public Class CPattern
         Public Name As String                       ' Pattern name
-        Public Category As String                  ' 
-        Public Group As String                     '
+        Public Category As String                   ' optional 
+        Public Group As String                      ' optional
         Public Source As String                     ' f.e. the device name, MIDI, ...
         Public BPM As Integer                       ' BeatsPerMinute (Tempo)
         Public TPQ As Integer                       ' TicksPerQuarterNote (=960)
@@ -188,10 +188,10 @@ Public Class CMidiFile
 
         <Serializable>
         Public Class CVoiceMapEntry
-            Public VoiceNumberGM As Byte
-            Public VoiceNumber As Byte
-            Public BankMSB As Byte
-            Public BankLSB As Byte
+            Public VoiceNumberGM As Byte                ' for GeneralMidi
+            Public VoiceNumber As Byte                  ' these three members can be used
+            Public BankMSB As Byte                      ' for devices with more than
+            Public BankLSB As Byte                      ' 128 voices
         End Class
     End Class
 
