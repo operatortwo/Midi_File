@@ -11,6 +11,7 @@
     Public Property Enable_PlayerEvent As Boolean       ' save ressources if not needed      
 
     '--- HiRes Timer (new)
+    '---  ...plan to go back to timeSetEvent (see the documentation file)
 
     Declare Auto Function CreateTimerQueueTimer Lib "kernel32.dll" (ByRef phNewTimer As IntPtr, hTimerQueue As UInteger, lpTimeProc As TimerProc, cbParam As UInteger, DueTime As UInteger, Period As UInteger, Flags As UInteger) As Boolean
     Declare Auto Function DeleteTimerQueueTimer Lib "kernel32.dll" (hTimerQueue As UInteger, hTimer As UInteger, CompletionEvent As Integer) As Boolean
