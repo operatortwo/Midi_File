@@ -87,6 +87,7 @@ Partial Class Form1
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.tmDisplay = New System.Windows.Forms.Timer(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.cbDoLoop = New System.Windows.Forms.CheckBox()
         Me.MenuStrip1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -191,7 +192,7 @@ Partial Class Form1
         '
         'StatusStrip1
         '
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 428)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 459)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(699, 22)
         Me.StatusStrip1.TabIndex = 2
@@ -207,12 +208,13 @@ Partial Class Form1
         Me.TabControl1.Location = New System.Drawing.Point(0, 49)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(699, 379)
+        Me.TabControl1.Size = New System.Drawing.Size(699, 410)
         Me.TabControl1.TabIndex = 3
         '
         'TabPage1
         '
         Me.TabPage1.AutoScroll = True
+        Me.TabPage1.Controls.Add(Me.cbDoLoop)
         Me.TabPage1.Controls.Add(Me.btnGM_on)
         Me.TabPage1.Controls.Add(Me.btnResetAllControllers)
         Me.TabPage1.Controls.Add(Me.Label9)
@@ -233,7 +235,7 @@ Partial Class Form1
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(691, 353)
+        Me.TabPage1.Size = New System.Drawing.Size(691, 384)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Main"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -694,11 +696,21 @@ Partial Class Form1
         '
         Me.tmDisplay.Interval = 250
         '
+        'cbDoLoop
+        '
+        Me.cbDoLoop.AutoSize = True
+        Me.cbDoLoop.Location = New System.Drawing.Point(284, 350)
+        Me.cbDoLoop.Name = "cbDoLoop"
+        Me.cbDoLoop.Size = New System.Drawing.Size(67, 17)
+        Me.cbDoLoop.TabIndex = 60
+        Me.cbDoLoop.Text = "Do Loop"
+        Me.cbDoLoop.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(699, 450)
+        Me.ClientSize = New System.Drawing.Size(699, 481)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.ToolStrip1)
@@ -790,4 +802,5 @@ Partial Class Form1
     Friend WithEvents Mi_Info_About As ToolStripMenuItem
     Friend WithEvents btnResetAllControllers As Button
     Friend WithEvents btnGM_on As Button
+    Friend WithEvents cbDoLoop As CheckBox
 End Class
