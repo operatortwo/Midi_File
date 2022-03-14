@@ -10,16 +10,56 @@
     Public Event PlayerEvent(TrackEvent As TrackEvent)
     Public Property Enable_PlayerEvent As Boolean       ' save ressources if not needed      
 
-    '--- HiRes Timer (new)
-    '---  ...plan to go back to timeSetEvent (see the documentation file)
+    '--- HiRes Timer 
 
-    Declare Auto Function CreateTimerQueueTimer Lib "kernel32.dll" (ByRef phNewTimer As IntPtr, hTimerQueue As UInteger, lpTimeProc As TimerProc, cbParam As UInteger, DueTime As UInteger, Period As UInteger, Flags As UInteger) As Boolean
-    Declare Auto Function DeleteTimerQueueTimer Lib "kernel32.dll" (hTimerQueue As UInteger, hTimer As UInteger, CompletionEvent As Integer) As Boolean
+    Declare Auto Function timeBeginPeriod Lib "winmm.dll" (uPeriod As UInteger) As UInteger
+    Declare Auto Function timeEndPeriod Lib "winmm.dll" (uPeriod As UInteger) As UInteger
 
-    Delegate Sub TimerProc(lpParameter As IntPtr, TimerOrWaitFired As Boolean)
-    Private ReadOnly fptrTimerProc As New TimerProc(AddressOf TickCallback)
+    Declare Auto Function timeSetEvent Lib "winmm.dll" (uDelay As UInteger, uResolution As UInteger, lpTimeProc As TimerProc, dwUser As IntPtr, fuEvent As UInteger) As UInteger
+    Declare Auto Function timeKillEvent Lib "winmm.dll" (uTimerID As UInteger) As UInteger
 
-    Private PlayerClock_Handle As IntPtr
+    Private TimerID As UInteger
+
+    Private Const TIME_PERIODIC = 1
+
+    Delegate Sub TimerProc(uID As UInteger, uMsg As UInteger, dwUser As UInteger, dw1 As UInteger, dw2 As UInteger)
+    Private ReadOnly fptrTimeProc As New TimerProc(AddressOf TickCallback)
+
+    Private _TimerInterval As UInteger = 3
+    ''' <summary>
+    ''' Between 1 and 10 Milliseconds. Default = 3
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property TimerInterval As UInteger
+        Get
+            Return _TimerInterval
+        End Get
+        Set(value As UInteger)
+            If value > 10 Then
+                value = 10
+            ElseIf value < 1 Then
+                value = 1
+            End If
+            _TimerInterval = value
+        End Set
+    End Property
+
+    Private _TimerResolution As UInteger = 3
+    ''' <summary>
+    ''' Between 0 and 10 , 0 = most accurate. Default = 3
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property TimerResolution As UInteger
+        Get
+            Return _TimerResolution
+        End Get
+        Set(value As UInteger)
+            If value > 10 Then
+                value = 10
+            End If
+            _TimerResolution = value
+        End Set
+    End Property
 
     '--- Player
 
@@ -33,7 +73,7 @@
 
     Private DisablePlayer As Boolean                     ' while PlayerMoveTo
 
-    Public Sub TickCallback(lpParameter As IntPtr, TimerOrWaitFired As Boolean)
+    Private Sub TickCallback(uID As UInteger, uMsg As UInteger, dwUser As UInteger, dw1 As UInteger, dw2 As UInteger)
         Dim currentTick As Long = PlayerStopwatch.ElapsedTicks
         Dim DeltaTicks As Long                                      'stopwatch ticks
         Dim DeltaSongTicks As Double                                ' player ticks
@@ -200,20 +240,17 @@
     End Sub
 
     Private Sub StartPlayerTick()
-        Dim tDuetime_3 As UInteger = 1                  ' ms to first event
-        Dim tPeriod_3 As UInteger = 1                   ' wenn > 0 : Repetition time in ms
-        Dim ret As Boolean                      ' TRUE (NonZero) if ok, FALSE if failed
-        'Const WT_EXECUTEDEFAULT As UInteger = 0
-        Const WT_EXECUTEINTIMERTHREAD As UInteger = &H20
-        ret = CreateTimerQueueTimer(PlayerClock_Handle, 0, fptrTimerProc, 0, tDuetime_3, tPeriod_3, WT_EXECUTEINTIMERTHREAD)
-        'Flags=&H20 WT_EXECUTEINTIMERTHREAD  The callback function is invoked by the timer thread itself
-        ' otherwise the midi playback will not work properly (note hang-ups, etc.)        
+        If TimerID <> 0 Then Exit Sub
+        timeBeginPeriod(TimerResolution)
+        TimerID = timeSetEvent(TimerInterval, TimerResolution, fptrTimeProc, IntPtr.Zero, TIME_PERIODIC)
     End Sub
 
     Private Sub StopPlayerTick()
-        Dim ret As Boolean                      ' TRUE (NonZero) if ok, FALSE if failed
-        ret = DeleteTimerQueueTimer(0, CUInt(PlayerClock_Handle), 0)
-        PlayerClock_Handle = IntPtr.Zero                ' Handle is no longer valid -> set to 0
+        If TimerID <> 0 Then
+            timeKillEvent(TimerID)
+            timeEndPeriod(TimerResolution)
+            TimerID = 0
+        End If
     End Sub
 
     Private Sub AllNotesOff()
