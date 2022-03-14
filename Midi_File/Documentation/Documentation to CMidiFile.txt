@@ -43,15 +43,15 @@ Hires-Timer
 Often the expression 'High resolution timer' is used in public, but maybe a more appropriate decription would be 'High frequency timer'
 
 
-Hires-Timer (new version):
+Hires-Timer (previous version):
 --------------------------
-TimerQueueTimer is now used, seems to work.
+TimerQueueTimer was used, seemed to work.
 Update: CreateTimerQueueTimer can normally not reach an interval below 15 milliseconds. 
 Lower values could only be achieved in conjunction with some USB-Midi manufacturer drivers.
 So it seems that timeSetEvent is the only reliable way to get a Timer interval down to 1 millisecond.
 
 
-Hires-Timer (old version):
+Hires-Timer (current version):
 --------------------------
 
 Declare Auto Function timeBeginPeriod Lib "winmm.dll" (uPeriod As UInteger) As UInteger
