@@ -64,7 +64,7 @@
     '--- Player
 
     Private PlayerStopwatch As New Stopwatch             ' for Player
-
+    Public Property DoLoop As Boolean                   ' restart at the end of the file
     Public ReadOnly Property PlayerRunning As Boolean
     Public ReadOnly Property PlayerPaused As Boolean
 
@@ -157,7 +157,13 @@
             End If
 
             If PlayerPosition > LastTick Then
-                StopPlayer()
+                If DoLoop = False Then
+                    StopPlayer()
+                Else
+                    PlayerPause()
+                    PlayerRestartLoop(0)
+                    PlayerContinue()
+                End If
             End If
 
         Next
@@ -335,6 +341,25 @@
             DisablePlayer = False                               ' enable calls from PlayerStopwatch
 
         End If
+    End Sub
+
+    Private Sub PlayerRestartLoop(NewPosition As Double)
+        DisablePlayer = True                                ' no calls from PlayerStopwatch
+
+        PlayerStopwatch.Reset()
+        LastPlayerTick = 0
+
+        If NewPosition > LastTick Then NewPosition = LastTick - 1
+        PlayerPosition = NewPosition
+
+        '--- Reset Player-vars
+
+        For i = 1 To TrackList.Count
+            TrackList(i - 1).EventPtr = 0
+            TrackList(i - 1).EndOfTrack = False
+        Next
+
+        DisablePlayer = False                               ' enable calls from PlayerStopwatch
     End Sub
 
 End Class

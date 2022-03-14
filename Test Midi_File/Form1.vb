@@ -365,5 +365,11 @@ Public Class Form1
 
     End Sub
 
-
+    Private Sub cbDoLoop_CheckedChanged(sender As Object, e As EventArgs) Handles cbDoLoop.CheckedChanged
+        If cbDoLoop.Checked = True Then
+            Mid.DoLoop = True
+        Else
+            Mid.DoLoop = False
+        End If
+    End Sub
 End Class
