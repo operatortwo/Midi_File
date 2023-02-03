@@ -19,7 +19,7 @@ Partial Public Class CMidiFile
 
                     If ev.DataX.Length > 0 Then
                         chr = ascii.GetChars(ev.DataX)
-                        Return " - " & chr
+                        Return chr
                     Else
                         Return ""
                     End If
@@ -28,6 +28,6 @@ Partial Public Class CMidiFile
             End If
         Next
 
-        Return " - [no Name]"
+        Return "[no Name]"
     End Function
 End Class
