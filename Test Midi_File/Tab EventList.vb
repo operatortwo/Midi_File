@@ -9,7 +9,7 @@ Partial Public Class Form1
         cmbTrackList.Items.Clear()
 
         For i = 1 To Mid.TrackList.Count
-            cmbTrackList.Items.Add("Track " & CStr(i) & Mid.GetTrackName(i - 1))
+            cmbTrackList.Items.Add("Track " & CStr(i) & " - " & Mid.GetTrackName(i - 1))
         Next
 
     End Sub

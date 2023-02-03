@@ -5,7 +5,7 @@
         clbMute.Items.Clear()
 
         For i = 1 To Mid.TrackList.Count
-            clbMute.Items.Add("Track " & CStr(i) & Mid.GetTrackName(i - 1))
+            clbMute.Items.Add("Track " & CStr(i) & " - " & Mid.GetTrackName(i - 1))
         Next
 
     End Sub
