@@ -19,7 +19,9 @@ Public Module MDecode
     End Function
 
     Private Function GetSubType_Midi(ev As CMidiFile.TrackEvent) As String
-        Return CType(ev.Status And &HF0, MidiEventType).ToString()
+        Dim stat As Byte = CByte(ev.Status And &HF0)
+        If (stat = &H90 And ev.Data2 = 0) OrElse (stat = &H80) Then Return MidiEventType.NoteOffEvent.ToString
+        Return CType(stat, MidiEventType).ToString()
     End Function
 
     Public Function GetChannel(ev As CMidiFile.TrackEvent) As String
@@ -54,11 +56,10 @@ Public Module MDecode
         Dim stat As Byte = CByte(ev.Status And &HF0)
 
         If stat = MidiEventType.NoteOffEvent Then
-            Return Hex(ev.Status) & " " & Hex(ev.Data1) & " " & Hex(ev.Data2)
-        ElseIf stat = MidiEventType.NoteOnEvent Then
+            Return Hex(ev.Status) & " " & Hex(ev.Data1) & " " & Hex(ev.Data2) & "  -  " & NoteNr_to_NoteName(ev.Data1)
 
-            Return Hex(ev.Status) & " " & Hex(ev.Data1) & " " & Hex(ev.Data2) & "  -  " &
-                                                            NoteNr_to_NoteName(ev.Data1)
+        ElseIf stat = MidiEventType.NoteOnEvent Then
+            Return Hex(ev.Status) & " " & Hex(ev.Data1) & " " & Hex(ev.Data2) & "  -  " & NoteNr_to_NoteName(ev.Data1)
 
         ElseIf stat = MidiEventType.PolyKeyPressure Then
 
