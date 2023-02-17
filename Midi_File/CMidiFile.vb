@@ -356,11 +356,11 @@ Public Class CMidiFile
 
             If ev.Status = stat Then                        ' 9nh
                 If ev.Data1 = noteNum Then                  ' same NoteNumber
-                    'If ev.Data2 = 0 Then                   ' velocity = 0
-                    Return ev.Time - start_time
-                    'End If
+                    If ev.Data2 = 0 Then                    ' velocity = 0
+                        Return ev.Time - start_time
+                    End If
                 End If
-            ElseIf ev.Status = stat - &H10 Then             ' 8nh
+                ElseIf ev.Status = stat - &H10 Then             ' 8nh
                 If ev.Data1 = noteNum Then                  ' same NoteNumber
                     Return ev.Time - start_time
                 End If
