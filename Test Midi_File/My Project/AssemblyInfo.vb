@@ -10,7 +10,7 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("Test Midi_File")>
 <Assembly: AssemblyDescription("Test application for the Midi_File library")>
-<Assembly: AssemblyCompany("")>
+<Assembly: AssemblyCompany("SQ Programming")>
 <Assembly: AssemblyProduct("Test Midi_File")>
 <Assembly: AssemblyCopyright("Copyright ©  2021-2023   github.com/operatortwo")>
 <Assembly: AssemblyTrademark("")>
