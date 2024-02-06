@@ -225,7 +225,7 @@ Public Module MDecode
 
         If src.Count > 0 Then
 
-            Dim array(src.Count() * 3) As Byte
+            Dim array((src.Count() * 3) - 1) As Byte            ' upper bound
             p = 0
             For i = 0 To src.Count - 1
                 array(p) = CByte(Asc(Hex(src(i) >> 4)))
