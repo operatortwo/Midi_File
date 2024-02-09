@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("Test application for the Midi_File library")>
 <Assembly: AssemblyCompany("SQ Programming")>
 <Assembly: AssemblyProduct("Test Midi_File")>
-<Assembly: AssemblyCopyright("Copyright ©  2021-2023   github.com/operatortwo")>
+<Assembly: AssemblyCopyright("Copyright ©  2021-2024   operatortwo")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' übernehmen, indem Sie "*" eingeben:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.0.3.1")>
-<Assembly: AssemblyFileVersion("1.0.3.1")>
+<Assembly: AssemblyVersion("1.0.3.4")>
+<Assembly: AssemblyFileVersion("1.0.3.4")>

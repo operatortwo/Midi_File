@@ -217,30 +217,38 @@ Public Module MDecode
         ' A4 = 440Hz = NoteNr: 69 (Def: Middle C = C4 = NoteNr: 60)
     End Function
 
-
+    ''' <summary>
+    ''' Converts a byte array to hex string. f.e. (A1, B2, C3, 54) to 'A1 B2 C3 54'
+    ''' </summary>
+    ''' <param name="src">Byte()</param>
+    ''' <returns>Result as hex string. Empty string if source is Nothing or empty.</returns>
     Public Function Bytes_to_hex_str(ByRef src As Byte()) As String
-
-        Dim i, p As Integer
         Dim str As String = ""
 
-        If src.Count > 0 Then
+        Dim x As Byte() = {&HA1, &HB2, &HC3}
 
-            Dim array((src.Count() * 3) - 1) As Byte            ' upper bound
-            p = 0
-            For i = 0 To src.Count - 1
-                array(p) = CByte(Asc(Hex(src(i) >> 4)))
-                array(p + 1) = CByte(Asc(Hex(src(i) And &HF)))
-                array(p + 2) = &H20
-                p = p + 3
-            Next
+        If src Is Nothing Then Return str
+        If src.Count = 0 Then Return str                    ' return empty string
 
-            ' or:
-            'str = BitConverter.ToString(Buffer, BufferOffset, BytesPerRow)
-            'str = str.Replace("-", " ")
+        Dim arraysize As Integer = (src.Count * 3) - 1      ' each byte has (2 digits + 1 space) no space at the end
+        Dim i As Integer                                    ' source index
+        Dim d As Integer                                    ' destination index
 
-            str = System.Text.Encoding.ASCII.GetString(array)
+        Dim array(arraysize - 1) As Byte                    ' upper bound !
 
-        End If
+        For i = 0 To src.Count - 1
+            array(d) = CByte(Asc(Hex(src(i) >> 4)))         ' high nibble to first digit
+            array(d + 1) = CByte(Asc(Hex(src(i) And &HF)))  ' low nibble to second digit
+            If (d + 2) >= arraysize Then Exit For           ' early exit if at the end (avoid trailing space)
+            array(d + 2) = &H20
+            d += 3
+        Next
+
+        str = System.Text.Encoding.ASCII.GetString(array)
+
+        ' or:
+        'str = BitConverter.ToString(Buffer, BufferOffset, BytesPerRow)
+        'str = str.Replace("-", " ")
 
         Return str
     End Function
