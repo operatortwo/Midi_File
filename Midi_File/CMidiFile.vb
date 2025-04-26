@@ -233,16 +233,24 @@ Public Class CMidiFile
 
         '--- create TrackList (TrackChunks with "MTrk")
 
-        createTrackList(fullname)
+        Try                                     ' handle unexpected errors like invalid midifiles
 
-        createEventLists(fullname)
+            createTrackList(fullname)
 
-        DeltaTimeToAbs()                    ' Delta time to continuous time
+            createEventLists(fullname)
 
-        '--- calculate durations
-        ' try to calculate the duration of note-on's from 'time' (for GUI)
+            DeltaTimeToAbs()                    ' Delta time to continuous time
 
-        CalculateDurations()                ' unsuccessful events: Duration = 0
+            '--- calculate durations
+            ' try to calculate the duration of note-on's from 'time' (for GUI)
+
+            CalculateDurations()                ' unsuccessful events: Duration = 0
+
+        Catch ex As Exception
+            ErrorCode = MiErr_Unknown
+            ErrorText = ex.Message
+            Return False
+        End Try
 
         '--- Reset Player-vars
 

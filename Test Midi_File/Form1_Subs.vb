@@ -65,7 +65,7 @@ Partial Public Class Form1
                 UpdateCmbTrackList()            ' Selection of the track for the event list
                 UpdateClbMute()                 ' CheckListe Mute
             Else
-                MsgOut("Error reading file")
+                MsgOut("Error reading file" & vbCrLf & Mid.ErrorText)
                 ResetForm1Title()
             End If
 

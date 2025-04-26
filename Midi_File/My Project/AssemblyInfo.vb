@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("Read and play Midi-files (*.mid)")>
 <Assembly: AssemblyCompany("")>
 <Assembly: AssemblyProduct("Midi_File")>
-<Assembly: AssemblyCopyright("Copyright ©  2021-2024   operatortwo")>
+<Assembly: AssemblyCopyright("Copyright ©  2021-2025   operatortwo")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' übernehmen, indem Sie "*" eingeben:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.0.3.4")>
-<Assembly: AssemblyFileVersion("1.0.3.4")>
+<Assembly: AssemblyVersion("1.0.3.5")>
+<Assembly: AssemblyFileVersion("1.0.3.5")>
